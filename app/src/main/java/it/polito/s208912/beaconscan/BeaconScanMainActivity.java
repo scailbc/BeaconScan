@@ -12,7 +12,7 @@ import com.estimote.sdk.SystemRequirementsChecker;
 import java.util.List;
 import java.util.UUID;
 
-public class BeconScanMainActivity extends AppCompatActivity {
+public class BeaconScanMainActivity extends AppCompatActivity {
 
     private BeaconManager bm;
     private Region region;
@@ -20,7 +20,7 @@ public class BeconScanMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_becon_scan_main);
+        setContentView(R.layout.activity_beacon_scan_main);
 
         this.bm = new BeaconManager(getApplicationContext());
         this.region = new Region("ranged region",
@@ -57,5 +57,6 @@ public class BeconScanMainActivity extends AppCompatActivity {
         this.bm.stopRanging(this.region);
         this.bm.disconnect();
         super.onDestroy();
+        setContentView(R.layout.activity_beacon_scan_main);
     }
 }
