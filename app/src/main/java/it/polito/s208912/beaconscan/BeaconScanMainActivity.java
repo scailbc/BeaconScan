@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class BeaconScanMainActivity extends AppCompatActivity {
 
-    public static final String TAG = "Airport";
+    public static final String TAG = "BeaconScanMain";
     private BeaconManager bm;
     private Region region;
 
