@@ -79,6 +79,7 @@ public class BeaconScanMainActivity extends AppCompatActivity {
      * @param beacons
      */
     private void updateBeacons(List<Beacon> beacons){
-
+        this.lastSeenBeacons.clear();
+        this.lastSeenBeacons.addAll(beacons);
     }
 }
