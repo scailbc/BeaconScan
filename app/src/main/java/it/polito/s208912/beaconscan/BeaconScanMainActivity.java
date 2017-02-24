@@ -14,6 +14,7 @@ import java.util.UUID;
 
 public class BeaconScanMainActivity extends AppCompatActivity {
 
+    public static final String TAG = "Airport";
     private BeaconManager bm;
     private Region region;
 
@@ -29,6 +30,7 @@ public class BeaconScanMainActivity extends AppCompatActivity {
         this.bm.connect(new BeaconManager.ServiceReadyCallback() {
             @Override
             public void onServiceReady() {
+                Log.i(TAG, "Start Ranging");
                 bm.startRanging(region);
             }
         });
@@ -39,7 +41,10 @@ public class BeaconScanMainActivity extends AppCompatActivity {
                 if (!list.isEmpty()) {
                     Beacon nearestBeacon = list.get(0);
                     // TODO: update the UI here
-                    Log.d("Airport", "Nearest beacon: " + nearestBeacon.toString());
+                    Log.d(TAG, "Nearest beacon: " + nearestBeacon.toString());
+                }
+                else {
+                    Log.d(TAG, "No beacon visible");
                 }
             }
         });
@@ -49,12 +54,14 @@ public class BeaconScanMainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Check if the user gave Bluetooth permission
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
     }
 
     @Override
     protected void onDestroy() {
         this.bm.stopRanging(this.region);
+        Log.i(TAG, "Stop Ranging");
         this.bm.disconnect();
         super.onDestroy();
         setContentView(R.layout.activity_beacon_scan_main);
